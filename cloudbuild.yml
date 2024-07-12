@@ -29,4 +29,4 @@ steps:
       - '-c'
       - |
         kubectl get deployment/container1-deployment || kubectl apply -f container1-deployment.yml
-        kubectl set image deployment/container1-deployment container1=us-central1-docker.pkg.dev/assi-427619/k8s-test/a3container1:${SHORT_SHA}
+        kubectl set image deployment/container1-deployment container1=us-central1-docker.pkg.dev/assi-427619/a3-artifact/dbhavsar214-container1/a3container1:${SHORT_SHA}
