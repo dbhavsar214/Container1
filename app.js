@@ -39,7 +39,7 @@ app.post('/store-file', (req, res) => {
   });
 });
 
-// Endpoint to calculate
+
 app.post('/calculate', async (req, res) => {
   const { file, product } = req.body;
 
