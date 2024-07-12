@@ -1,0 +1,9 @@
+steps:
+...
+# deploy container image to GKE
+- name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=container1-deplyment.yml
+  - --location=us-central-1
+  - --cluster=cluster-3

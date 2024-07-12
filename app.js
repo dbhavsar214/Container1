@@ -53,7 +53,7 @@ app.post('/calculate', async (req, res) => {
   }
 
   try {
-    const response = await axios.post(CONTAINER_2_ENDPOINT, { file, product });
+    const response = await axios.post(CONTAINER_2_ENDPOINT, { "file": file, "data": product });
     console.log(response.data);  // Logging the response data from the processor
     return res.json(response.data); // Returning the response data from the processor
   } catch (error) {

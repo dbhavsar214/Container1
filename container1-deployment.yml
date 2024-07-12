@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: container1
-        image: divy214/cor1:latest
+        image: divy214/aco1:latest
         ports:
         - containerPort: 6000
         env:
@@ -23,7 +23,7 @@ spec:
         - name: FILE_DIRECTORY
           value: "/divy_PV_dir"
         - name: CONTAINER_2_ENDPOINT
-          value: "http://container2-service:90/calculate"
+          value: "http://container2-service/calculate"
         volumeMounts:
         - name: container1-pvc
           mountPath: /divy_PV_dir
@@ -40,7 +40,7 @@ metadata:
   name: container1-service
 spec:
   selector:
-    app: container1l̥
+    app: container1
   ports:
     - protocol: TCP
       port: 80
