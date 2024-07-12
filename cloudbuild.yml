@@ -10,7 +10,7 @@ steps:
 
   # Build and push container1 for your project
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/assi-427619/a3-artifact/dbhavsar214-container1/acon1:latest', ' .']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/assi-427619/a3-artifact/dbhavsar214-container1/acon1:latest', '.']
 
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/assi-427619/a3-artifact/dbhavsar214-container1/acon1:latest']
