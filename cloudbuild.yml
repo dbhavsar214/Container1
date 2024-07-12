@@ -10,10 +10,10 @@ steps:
 
   # Build and push container1 for your project
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/assi-427619/a3-artifact/dbhavsar214-container1/acon1:latest', '.']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/assi-427619/a3-artifact/dbhavsar214-container1/aco1final:latest', '.']
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/assi-427619/a3-artifact/dbhavsar214-container1/acon1:latest']
+    args: ['push', 'us-central1-docker.pkg.dev/assi-427619/a3-artifact/dbhavsar214-container1/aco1final:latest']
 
   # Get credentials for your project's cluster and deploy container1
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:latest'
@@ -21,7 +21,7 @@ steps:
     args:
       - '-c'
       - |
-        gcloud container clusters get-credentials cluster-3 --zone us-central1-c --project assi-427619
+        gcloud container clusters get-credentials k8s-test --zone us-central1-c --project assi-427619
 
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:latest'
     entrypoint: 'bash'
@@ -29,5 +29,5 @@ steps:
       - '-c'
       - |
         kubectl apply -f container1-deployment.yml
-        kubectl set image deployment/container1-deployment acon1=us-central1-docker.pkg.dev/assi-427619/cluster-3/acon1:latest
+        kubectl set image deployment/container1-deployment aco1final=us-central1-docker.pkg.dev/assi-427619/k8s-test/aco1final:latest
         kubectl rollout status deployment/container1-deployment
