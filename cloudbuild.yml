@@ -1,9 +1,33 @@
+# Global options for the build
+options:
+  logging: CLOUD_LOGGING_ONLY
+
 steps:
-...
-# deploy container image to GKE
-- name: "gcr.io/cloud-builders/gke-deploy"
-  args:
-  - run
-  - --filename=container1-deplyment.yml
-  - --location=us-central-1
-  - --cluster=cluster-3
+  # Authenticate Docker for both projects
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:latest'
+    entrypoint: 'bash'
+    args: [ '-c', 'gcloud auth configure-docker --quiet' ]
+
+  # Build and push container1 for your project
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/assi-427619/cluster3/acon1:latest', '.']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us-central1-docker.pkg.dev/assi-427619/cluster3/acon1:latest']
+
+  # Get credentials for your project's cluster and deploy container1
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:latest'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud container clusters get-credentials cluster3 --zone us-central1-c --project assi-427619
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:latest'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        kubectl get deployment acon1-deployment || kubectl apply -f deployment-acon1.yaml
+        kubectl set image deployment/acon1-deployment acon1=us-central1-docker.pkg.dev/assi-427619/cluster3/acon1:latest
+        kubectl rollout status deployment/acon1-deployment
