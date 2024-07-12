@@ -29,5 +29,5 @@ steps:
       - '-c'
       - |
         kubectl apply -f container1-deployment.yml
-        kubectl set image deployment/container1-deployment a3container1=us-central1-docker.pkg.dev/assi-427619/k8s-test/a3-artifact/container1:latest
+        kubectl set image deployment/container1-deployment container1=us-central1-docker.pkg.dev/assi-427619/k8s-test/a3-artifact/container1:latest
         kubectl rollout status deployment/container1-deployment
