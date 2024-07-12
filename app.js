@@ -57,7 +57,7 @@ app.post('/calculate', async (req, res) => {
     console.log(response.data);  // Logging the response data from the processor
     return res.json(response.data); // Returning the response data from the processor
   } catch (error) {
-    console.error("Axios error:", error); // Logging Axios errors
+    console.error("Axios error:", error); 
     return res.status(500).json({ file, error: 'Error processing request.' });
   }
 });
