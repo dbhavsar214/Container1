@@ -21,7 +21,7 @@ steps:
     args:
       - '-c'
       - |
-        gcloud container clusters get-credentials k8s-test --zone us-central1-c --project assi-427619
+        gcloud container clusters get-credentials k8s-assignment --zone us-central1-c --project assi-427619
 
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:latest'
     entrypoint: 'bash'
