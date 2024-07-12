@@ -55,9 +55,9 @@ app.post('/calculate', async (req, res) => {
   try {
     const response = await axios.post(CONTAINER_2_ENDPOINT, { "file": file, "data": product });
     console.log(response.data);  // Logging the response data from the processor
-    return res.json(response.data); // Returning the response data from the processor
+    return res.json(response.data);
   } catch (error) {
-    console.error("Axios error:", error); 
+    console.error("Axios error:", error);
     return res.status(500).json({ file, error: 'Error processing request.' });
   }
 });
