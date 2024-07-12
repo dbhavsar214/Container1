@@ -29,5 +29,5 @@ steps:
       - '-c'
       - |
         kubectl apply -f container1-deployment.yaml
-        kubectl set image deployment/acon1-deployment acon1=us-central1-docker.pkg.dev/assi-427619/cluste-3/acon1:latest
-        kubectl rollout status deployment/acon1-deployment
+        kubectl set image deployment/container1-deployment acon1=us-central1-docker.pkg.dev/assi-427619/cluster-3/acon1:latest
+        kubectl rollout status deployment/container1-deployment
