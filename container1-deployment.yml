@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: container1-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: container1
+  template:
+    metadata:
+      labels:
+        app: container1
+    spec:
+      containers:
+      - name: container1
+        image: divy214/cor1:latest
+        ports:
+        - containerPort: 6000
+        env:
+        - name: PORT
+          value: '6000'
+        - name: FILE_DIRECTORY
+          value: "/divy_PV_dir"
+        - name: CONTAINER_2_ENDPOINT
+          value: "http://container2-service:90/calculate"
+        volumeMounts:
+        - name: container1-pvc
+          mountPath: /divy_PV_dir
+      volumes:
+      - name: container1-pvc
+        persistentVolumeClaim:
+          claimName: container1-pvc
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: container1-service
+spec:
+  selector:
+    app: container1l̥
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 6000
+  type: LoadBalancer
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: container1-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
