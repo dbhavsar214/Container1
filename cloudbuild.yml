@@ -23,11 +23,10 @@ steps:
       - |
         gcloud container clusters get-credentials k8s-assignment --zone us-central1-c --project assi-427619
 
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:latest'
+  - name: 'gcr.io/cloud-builders/kubectl'
     entrypoint: 'bash'
     args:
       - '-c'
       - |
         kubectl get deployment/container2-deployment || kubectl apply -f container1-deployment.yml
         kubectl set image deployment/container1-deployment container1=us-central1-docker.pkg.dev/assi-427619/k8s-test/a3container1:latest
-        kubectl rollout status deployment/container1-deployment
