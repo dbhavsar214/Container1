@@ -42,7 +42,7 @@ app.post('/store-file', (req, res) => {
 
 app.post('/calculate', async (req, res) => {
   const { file, product } = req.body;
-
+  //comment
   if (!file) {
     return res.status(400).json({ file: null, error: 'Invalid JSON input.' });
   }
