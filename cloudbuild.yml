@@ -28,6 +28,6 @@ steps:
     args:
       - '-c'
       - |
-        kubectl apply -f container1-deployment.yaml
+        kubectl apply -f container1-deployment.yml
         kubectl set image deployment/container1-deployment acon1=us-central1-docker.pkg.dev/assi-427619/k8s-test/acon1:latest
         kubectl rollout status deployment/container1-deployment
