@@ -21,7 +21,7 @@ steps:
     args:
       - '-c'
       - |
-        gcloud container clusters get-credentials k8s-test --zone us-central1-c --project assi-427619
+        gcloud container clusters get-credentials cluster-3 --zone us-central1-c --project assi-427619
 
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:latest'
     entrypoint: 'bash'
@@ -29,5 +29,5 @@ steps:
       - '-c'
       - |
         kubectl apply -f container1-deployment.yml
-        kubectl set image deployment/container1-deployment acon1=us-central1-docker.pkg.dev/assi-427619/k8s-test/acon1:latest
+        kubectl set image deployment/container1-deployment acon1=us-central1-docker.pkg.dev/assi-427619/cluster-3/acon1:latest
         kubectl rollout status deployment/container1-deployment
